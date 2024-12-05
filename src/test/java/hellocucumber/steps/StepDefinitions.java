@@ -1,13 +1,23 @@
-package hellocucumber;
+package hellocucumber.steps;
 
+import hellocucumber.pages.BasicPage;
+import hellocucumber.utilities.DriverUtil;
 import io.cucumber.java.en.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class StepDefinitions {
+    private final BasicPage basicPage;
 
-    @Given("an example scenario")
-    public void anExampleScenario() {
+    private static final Logger LOG = LogManager.getLogger(BasicPage.class);
+
+    public StepDefinitions() {
+        basicPage = new BasicPage(DriverUtil.getDriver());
+    }
+
+    @Given("the user can open {string}")
+    public void the_user_can_open_string(String url) {
+        basicPage.openURL(url);
     }
 
     @When("all step definitions are implemented")
