@@ -13,8 +13,6 @@ import org.apache.logging.log4j.Logger;
 public class BasicSteps {
   private final BasicPage basicPage;
 
-  private static final Logger LOG = LogManager.getLogger(BasicPage.class);
-
   public BasicSteps() {
     basicPage = new BasicPage(DriverUtil.getDriver());
   }

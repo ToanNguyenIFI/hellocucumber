@@ -48,13 +48,6 @@ public class Hook {
     private static final ThreadLocal<Map<String, List<String>>> captureInfo = new ThreadLocal<>();
     private static final ThreadLocal<List<PickleStepTestStep>> testStepTitles = new ThreadLocal<>();
 
-
-    public static void saveStartTime() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        stepStartTime = dtf.format(now);
-    }
-
     @Before
     public static synchronized void beginScenario(Scenario scenario)
             throws NoSuchFieldException, IllegalAccessException {
@@ -84,7 +77,7 @@ public class Hook {
         LOG.info("-------------------------------------------");
         threadLocalCurrentStepNumber.set(0);
         BasePage.CURRENT_THREAD_SCENARIO.set(scenario.getName() + scenario.getSourceTagNames() + " --- ");
-        captureInfo.set(readJsonFileToList("CAPTURE.json"));
+//        captureInfo.set(readJsonFileToList("CAPTURE.json"));
     }
 
 
@@ -130,7 +123,7 @@ public class Hook {
         String res = null;
         try {
             res = FileUtils.readFileToString(
-                    new File("src/main/java/testdata/input/" + fileName), StandardCharsets.UTF_8);
+                    new File("src/test/resources/testdata/" + fileName), StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new CucumberException("Can't read Json file: ", e);
         }

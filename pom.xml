@@ -201,8 +201,6 @@
                                 <browser>${browser}</browser>
                                 <!--suppress UnresolvedMavenProperty -->
                                 <platform>${platform}</platform>
-                                <!--suppress UnresolvedMavenProperty -->
-                                <bundlePromo>${bundlePromo}</bundlePromo>
                             </classifications>
                         </configuration>
                     </execution>

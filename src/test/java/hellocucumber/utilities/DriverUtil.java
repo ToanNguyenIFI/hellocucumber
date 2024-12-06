@@ -75,11 +75,10 @@ public class DriverUtil {
         preferences.put("download.default_directory", PATH_TO_DOWNLOAD_DIR);
         preferences.put("profile.password_manager_enabled", false);
         preferences.put("profile.password_manager_leak_detection", false);
-        chromeOptions.addExtensions(new File(urlBlockerExtension.toAbsolutePath().toString()));
-        if (!Hook.executingEnv.toLowerCase().contains("jenkins")) {
-            chromeOptions.addExtensions(
-                    new File(modHeaderExtension.toAbsolutePath().toString()));
-        }
+//        if (!Hook.executingEnv.toLowerCase().contains("jenkins")) {
+//            chromeOptions.addExtensions(
+//                    new File(modHeaderExtension.toAbsolutePath().toString()));
+//        }
         chromeOptions.setExperimentalOption("prefs", preferences);
         chromeOptions.addArguments("--remote-allow-origins=*");
         chromeOptions.addArguments("--disable-gpu");

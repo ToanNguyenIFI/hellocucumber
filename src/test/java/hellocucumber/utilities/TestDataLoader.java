@@ -30,7 +30,7 @@ public class TestDataLoader {
     public static Map<String, String> readJsonFile(String dataFileToLoad) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            File jsonFile = new File("src/main/java/testdata/input/" + dataFileToLoad);
+            File jsonFile = new File("src/test/resources/testdata/" + dataFileToLoad);
             JsonNode rootNode = objectMapper.readTree(jsonFile);
             Map<String, String> mergedMap = new HashMap<>();
 

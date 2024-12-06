@@ -25,12 +25,6 @@ public class BasicPage extends BasePage {
     private static final Logger LOG = LogManager.getLogger(BasicPage.class);
     private final Map<String, String> xpathToPage = BasicPageLocators.createLibraryPage();
     private final Map<String, String> xpathToElement = BasicPageLocators.createLibraryElement();
-    public static ThreadLocal<Boolean> safariAuthorization = new ThreadLocal<>();
-    public static ThreadLocal<List<String>> email_list = ThreadLocal.withInitial(ArrayList::new),
-      contact_id_list = ThreadLocal.withInitial(ArrayList::new), customer_id_list = ThreadLocal.withInitial(ArrayList::new);
-    private static final Object fileWriteLock = new Object();
-    private static boolean isFileDeleted = false;
-    public static ThreadLocal<Boolean> isActivationFailedForAnyCustomer = ThreadLocal.withInitial(() -> Boolean.FALSE);
 
     public void openURL(String url) {
         String extractedUrl = TestDataLoader.getTestData(url);
