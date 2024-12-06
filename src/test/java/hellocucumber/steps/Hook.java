@@ -26,6 +26,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import static hellocucumber.utilities.DriverUtil.closeDriver;
 import static hellocucumber.utilities.DriverUtil.threadLocalActiveBrowsers;
 
 public class Hook {
@@ -77,7 +78,6 @@ public class Hook {
         LOG.info("-------------------------------------------");
         threadLocalCurrentStepNumber.set(0);
         BasePage.CURRENT_THREAD_SCENARIO.set(scenario.getName() + scenario.getSourceTagNames() + " --- ");
-//        captureInfo.set(readJsonFileToList("CAPTURE.json"));
     }
 
 
@@ -106,10 +106,10 @@ public class Hook {
             passedScenarios.add(scenario.getSourceTagNames().toString());
             LOG.info("Scenario with the following tags '{}' passed", scenarioTags);
         }
+        closeDriver();
         // Remove scenario context thread value after scenario
         ScenarioContext.getInstance().unload();
         testStepTitles.remove();
-        captureInfo.remove();
         BasePage.CURRENT_THREAD_SCENARIO.remove();
         LOG.info("-------------------------------------------");
     }
