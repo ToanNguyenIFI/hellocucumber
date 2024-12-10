@@ -45,8 +45,6 @@ public class DriverUtil {
     public static final String FILE_SEPARATOR = System.getProperty("file.separator");
     static Path modHeaderExtension = Paths.get(System.getProperty("user.dir") + FILE_SEPARATOR + "resources"
             + FILE_SEPARATOR + "chrome_extension" + FILE_SEPARATOR + "modheader.crx");
-    static Path urlBlockerExtension = Paths.get(System.getProperty("user.dir") + FILE_SEPARATOR + "resources"
-            + FILE_SEPARATOR + "chrome_extension" + FILE_SEPARATOR + "HTTP-Request-Blocker.crx");
 
     private DriverUtil() {
         threadLocalActiveBrowsers.set(new HashMap<>());
@@ -148,8 +146,7 @@ public class DriverUtil {
         chromeOptions.addArguments("--user-agent=" + userAgent);
         chromeOptions.addArguments("--lang=en");
         chromeOptions.addArguments("--enable-javascript");
-        chromeOptions.addExtensions(
-                new File(urlBlockerExtension.toAbsolutePath().toString()));
+
         if (!Hook.executingEnv.toLowerCase().contains("jenkins")) {
             chromeOptions.addExtensions(
                     new File(modHeaderExtension.toAbsolutePath().toString()));
@@ -199,8 +196,6 @@ public class DriverUtil {
         chromeOptions.addArguments("window-size=1920,1080");
         chromeOptions.addArguments("disable-infobars");
         chromeOptions.addArguments("--headless=new");
-        chromeOptions.addExtensions(
-                new File(urlBlockerExtension.toAbsolutePath().toString()));
         if (!Hook.executingEnv.toLowerCase().contains("jenkins")) {
             chromeOptions.addExtensions(
                     new File(modHeaderExtension.toAbsolutePath().toString()));
