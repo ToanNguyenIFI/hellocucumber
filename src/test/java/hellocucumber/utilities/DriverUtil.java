@@ -43,8 +43,6 @@ public class DriverUtil {
     private static final String HUB_ENDPOINT = System.getenv("HUB_ENDPOINT");
     public static ThreadLocal<RemoteWebDriver> threadLocalDriver = new ThreadLocal<>();
     public static final String FILE_SEPARATOR = System.getProperty("file.separator");
-    static Path modHeaderExtension = Paths.get(System.getProperty("user.dir") + FILE_SEPARATOR + "resources"
-            + FILE_SEPARATOR + "chrome_extension" + FILE_SEPARATOR + "modheader.crx");
 
     private DriverUtil() {
         threadLocalActiveBrowsers.set(new HashMap<>());
@@ -73,10 +71,6 @@ public class DriverUtil {
         preferences.put("download.default_directory", PATH_TO_DOWNLOAD_DIR);
         preferences.put("profile.password_manager_enabled", false);
         preferences.put("profile.password_manager_leak_detection", false);
-//        if (!Hook.executingEnv.toLowerCase().contains("jenkins")) {
-//            chromeOptions.addExtensions(
-//                    new File(modHeaderExtension.toAbsolutePath().toString()));
-//        }
         chromeOptions.setExperimentalOption("prefs", preferences);
         chromeOptions.addArguments("--remote-allow-origins=*");
         chromeOptions.addArguments("--disable-gpu");
@@ -146,11 +140,6 @@ public class DriverUtil {
         chromeOptions.addArguments("--user-agent=" + userAgent);
         chromeOptions.addArguments("--lang=en");
         chromeOptions.addArguments("--enable-javascript");
-
-        if (!Hook.executingEnv.toLowerCase().contains("jenkins")) {
-            chromeOptions.addExtensions(
-                    new File(modHeaderExtension.toAbsolutePath().toString()));
-        }
         chromeOptions.setExperimentalOption("w3c", true);
         chromeOptions.setCapability("browserName", "chrome");
         chromeOptions.setAcceptInsecureCerts(true);
@@ -196,10 +185,6 @@ public class DriverUtil {
         chromeOptions.addArguments("window-size=1920,1080");
         chromeOptions.addArguments("disable-infobars");
         chromeOptions.addArguments("--headless=new");
-        if (!Hook.executingEnv.toLowerCase().contains("jenkins")) {
-            chromeOptions.addExtensions(
-                    new File(modHeaderExtension.toAbsolutePath().toString()));
-        }
         chromeOptions.addArguments("--lang=en");
         chromeOptions.addArguments("--enable-javascript");
         chromeOptions.addArguments("--disable-search-engine-choice-screen");
